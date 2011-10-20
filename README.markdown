@@ -1,4 +1,4 @@
-﻿##jQuery CSS3 Sliding Tabs
+﻿## jQuery CSS3 Sliding Tabs
 
 A jQuery plugin which use CSS3 2D transforms to slides tabbed panel horizontally. If CSS3 transforms aren't available jQuery DOM animation is used as a fallback.
 
