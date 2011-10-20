@@ -1,0 +1,32 @@
+﻿/*jquery.css3tabslider*/
+#panel_view {
+  /*height: 400px;*/
+  /*width: 400px;*/
+  border: 1px solid black;
+  /*overflow: hidden;*/
+}
+
+#panel_container {
+  /*will still need to set this from js*/
+  /*width: 1200px;*/
+  /*height: 200px;*/
+  /*overflow: hidden;*/
+  /*border: 1px solid black;*/
+}
+
+#panel_container {
+  /*-webkit-transform: translatey(-150px);*/
+}
+
+.panel {
+  /*width: 400px;*/
+  /*height: 200px;*/
+  /*float: left;*/
+  /*overflow: hidden;*/
+  /*-webkit-transform: translatex(-400px);*/
+}
+
+#naviagtion {
+  height: 200px;
+}
+
