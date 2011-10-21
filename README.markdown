@@ -3,7 +3,8 @@
 
 A jQuery plugin which use CSS3 2D transforms to slides tabbed panel horizontally. If CSS3 transforms aren't available jQuery DOM animation is used as a fallback.
 
-###Basic markup
+Basic markup
+------------
 
     <div id="panel_view">
       <div id="panel_container">
@@ -28,17 +29,20 @@ A jQuery plugin which use CSS3 2D transforms to slides tabbed panel horizontally
     </div>
 
 
-###Basic Syntax
+Basic Syntax
+------------
+
     $('#panel_container').css3tabslider({options});
 
-###Possible options
-panel_width: the width of each panel in pixels
+Possible options
+----------------
+**panel_width:** the width of each panel in pixels
 
-speed: the time taken to complete the movement of each panel in seconds
+**speed:** the time taken to complete the movement of each panel in seconds
 
-easing: possible options are ease, ease-in, ease-out, ease-in-out
+**easing:** possible options are ease, ease-in, ease-out, ease-in-out
 
-    
+
 For example to create a sliding tabbed panel where each panel has a width of 500 pixels, the transition takes half a second to complete and the movement is eased using 'ease-in-out':
 
     $('#outermost_id').css3tabslider({
