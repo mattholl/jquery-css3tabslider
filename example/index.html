@@ -2,41 +2,52 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <title>CSS3 sliding tabs example page</title>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   <script type="text/javascript">
 !window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.6.4.min.js"%3E%3C/script%3E'));
   </script>
- 
+  <style>
+    #navigation { margin: 0 auto 2em; }
+    #navigation ul { margin: 0 auto; padding: 0; text-align: center; border-bottom: 1px solid #000; }
+    #navigation ul li { display: inline-block; list-style: none; }
+    #navigation ul li a:link, #navigation ul li a:visited, #navigation ul li a:active {
+      border-radius: 6px 6px 0 0; border: 1px solid #000; background: #000; color: #fff;
+      margin: 0 auto -1px; padding: 0 1em; display: inline-block;
+      text-align: center; text-decoration: none; line-height: 24px;
+    }
+    #navigation ul li.current a { background: #fff; color: #000; border-bottom: 1px solid #fff; }
+  </style>
 </head>
 <body>
   <div id="panel_view">
-    <div id="panel_container">
-		    <div class="panel">
-      		  <p>Content for slide 1</p>
-            <img src="http://placekitten.com/50/50" />
-            <p>Bacon ipsum dolor sit amet shankle short loin aliquip filet mignon, t-bone qui capicola. Enim laborum aute labore biltong. Non meatball in, ex filet mignon magna ball tip et spare ribs sirloin duis dolor eiusmod. Strip steak boudin nulla, swine veniam pork chop salami aliquip enim quis qui sunt laboris commodo. Bresaola biltong meatloaf strip steak. Mollit et in non pork loin, est in ea. Eiusmod et turkey rump do.</p>
-      		</div>
-      		<div class="panel">
-      		  <p>Content for slide 2</p>
-            <img src="http://placekitten.com/g/50/50" />
-            <p>Est leberkäse bacon, pork loin shank ground round officia tenderloin beef. Proident aliqua dolore biltong, ut fatback hamburger dolor corned beef minim cupidatat. Biltong eu pork loin pariatur, chicken enim duis turducken ea t-bone. Nostrud proident dolor sirloin laborum. Laboris consequat sed, enim salami short loin eu. Est leberkäse non beef in, fugiat velit. Bacon rump in, filet mignon pork t-bone culpa.</p>
-      		</div>
-      		<div class="panel">
-      		  <p>Content for slide 3</p>
-            <img src="http://placekitten.com/100/100" />
-            <p>In ham veniam shankle jerky, short loin hamburger dolor spare ribs ut corned beef. Andouille ham pastrami, aliquip salami do sed short loin nisi consequat consectetur anim irure enim. Consequat dolore meatball est in, sint velit commodo bresaola. Quis kielbasa culpa ut, excepteur flank do eiusmod turducken tri-tip in pork chop. In officia laboris meatball aute, culpa in jowl in pork belly capicola eiusmod ex. Est cow duis shankle, tempor incididunt biltong bacon meatloaf spare ribs commodo reprehenderit ball tip. Ground round irure commodo laboris et spare ribs.</p>
-      		</div>
-    </div>
 
     <div id="navigation">
-        	  <ul style="list-style: none">
-        	    <li><a href="#">Slide one</a></li>
-        	    <li><a href="#">Slide two</a></li>
-        	    <li><a href="#">Slide three</a></li>
-        	  </ul>
+      <ul>
+        <li><a href="#tab_one">Tab one</a></li>
+        <li class="current"><a href="#tab2">Tab two</a></li>
+        <li><a href="#third_tab">Tab three</a></li>
+      </ul>
     </div>
-	 
-</div>
+
+    <div id="panel_container">
+	  <div class="panel">
+      	<p>Content for slide 1</p>
+        <img src="http://placekitten.com/50/50" />
+        <p>Bacon ipsum dolor sit amet shankle short loin aliquip filet mignon, t-bone qui capicola. Enim laborum aute labore biltong. Non meatball in, ex filet mignon magna ball tip et spare ribs sirloin duis dolor eiusmod. Strip steak boudin nulla, swine veniam pork chop salami aliquip enim quis qui sunt laboris commodo. Bresaola biltong meatloaf strip steak. Mollit et in non pork loin, est in ea. Eiusmod et turkey rump do.</p>
+     </div>
+     <div class="panel">
+      	<p>Content for slide 2</p>
+        <img src="http://placekitten.com/g/50/50" />
+        <p>Est leberkäse bacon, pork loin shank ground round officia tenderloin beef. Proident aliqua dolore biltong, ut fatback hamburger dolor corned beef minim cupidatat. Biltong eu pork loin pariatur, chicken enim duis turducken ea t-bone. Nostrud proident dolor sirloin laborum. Laboris consequat sed, enim salami short loin eu. Est leberkäse non beef in, fugiat velit. Bacon rump in, filet mignon pork t-bone culpa.</p>
+     </div>
+     <div class="panel">
+      	<p>Content for slide 3</p>
+        <img src="http://placekitten.com/100/100" />
+        <p>In ham veniam shankle jerky, short loin hamburger dolor spare ribs ut corned beef. Andouille ham pastrami, aliquip salami do sed short loin nisi consequat consectetur anim irure enim. Consequat dolore meatball est in, sint velit commodo bresaola. Quis kielbasa culpa ut, excepteur flank do eiusmod turducken tri-tip in pork chop. In officia laboris meatball aute, culpa in jowl in pork belly capicola eiusmod ex. Est cow duis shankle, tempor incididunt biltong bacon meatloaf spare ribs commodo reprehenderit ball tip. Ground round irure commodo laboris et spare ribs.</p>
+      </div>
+    </div>
+
+  </div>
 
 <script src="js/jquery.css3tabslider.js"></script>
 <script type="text/javascript">

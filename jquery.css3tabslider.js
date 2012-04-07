@@ -9,7 +9,6 @@
 
 ;(function($) {
   //check for css3 support use basic if else
-
   $.css3tabslider = {};
   $.css3tabslider.vendors = ['Khtml','Ks', 'O', 'Moz', 'Webkit'];
   $.css3tabslider.css3transforms = (function() {
@@ -19,16 +18,14 @@
     if(property in div.style) {
       return true;
     } else {
-      property = property.replace(/^[a-z]/, function(val) {  
-          return val.toUpperCase();  
+      property = property.replace(/^[a-z]/, function(val) {
+          return val.toUpperCase();
       });
-      
+
       for(var i = 0, vendors = $.css3tabslider.vendors, len = vendors.length; i < len; i++) {
         if(vendors[i] + property in div.style) {
-
           //the browser supports css3 transforms
           return true;
-
         }
       }
     }
@@ -39,7 +36,6 @@
   //add easing for js animation - map to same string values as in css3 transforms
   //http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js
   // t: current time, b: begInnIng value, c: change In value, d: duration
-
   $.easing['jswing'] = $.easing['swing'];
   $.extend( $.easing, {
     'def': 'ease-out',
@@ -59,20 +55,19 @@
   });
 
   /***********************************************************************/
-  
+
   //plugin setup return code
-  
   $.fn.css3tabslider = function(settings) {
 
     //combine default settings with those passed in through settings object
-    
     var opts = $.extend({}, $.fn.css3tabslider.defaults, settings);
 
     return this.each(function() {
       var obj = $(this);
-      
+
       //apply setup css to slides
       obj.css('width', opts.panel_width);
+      obj.css('maxWidth', opts.panel_width);
       obj.css('overflow', 'hidden');
       var num_slides = obj.children('#panel_container').children().size();
       var container_width = num_slides * opts.panel_width;
@@ -80,54 +75,86 @@
       obj.children('#panel_container').css('width', container_width);
 
       obj.children('#panel_container').children().each(function() {
-         $(this).css('width', opts.panel_width);
-         $(this).css('float', 'left');
+        $(this).css('width', opts.panel_width);
+        $(this).css('float', 'left');
       });
 
       if ($.css3tabslider.css3transforms == true) {
         //use css3 transforms
         var slide = 0;
-        
+
         //find navigation and attach event to click
         var links = obj.children('#navigation').children('ul').children('li');
 
-         links.each(function(index) {
+        links.each(function(index) {
+          var li   = $(this);
+          var a    = li.children('a');
+          var hash = a.attr('href');
 
-            $(this).bind('click', function() {
-
-              for(var i = 0, len = $.css3tabslider.vendors.length; i < len; i ++) {
-              
-                var vendor = $.css3tabslider.vendors[i].replace(/^[A-Z]/, function(val) {
-                      return val.toLowerCase();  
-                });
-
-                $('.panel').css('-'+vendor+'-transform', 'translateX(' + index*-opts.panel_width +'px)');
-                $('.panel').css('-'+vendor+'-transition', '-'+vendor+'-transform '+opts.speed+'s '+opts.easing);
-              }
-              
-              //also if there's no vendor prefix
-              $('.panel').css('transform', 'translateX(' + index*-opts.panel_width +'px)');
-              $('.panel').css('transition', '-'+vendor+'-transform '+opts.speed+'s ' +opts.easing);
-              slide = index;
-            });
-          });
-       } else {
-        //browser doesn't support css transforms - use jquery animation fallback
-        var current = 1;
-         $('#navigation ul li').each(function(index) {
- 
-          $(this).bind('click', function(e){
-            $('#panel_container').stop().animate({
-                marginLeft: index*-opts.panel_width + 'px'
-            },{
-              speed: opts.speed*1000,
-              easing: opts.easing
-            });
+          a.bind('click', function(e) {
             e.preventDefault();
-           
+            location.hash = hash;
+            li.addClass('current').siblings().removeClass('current');
+
+            for(var i = 0, len = $.css3tabslider.vendors.length; i < len; i ++) {
+
+              var vendor = $.css3tabslider.vendors[i].replace(/^[A-Z]/, function(val) {
+                return val.toLowerCase();
+              });
+
+              $('.panel').css('-'+vendor+'-transform', 'translateX(' + index*-opts.panel_width +'px)');
+              $('.panel').css('-'+vendor+'-transition', '-'+vendor+'-transform '+opts.speed+'s '+opts.easing);
+            }
+
+            //also if there's no vendor prefix
+            $('.panel').css('transform', 'translateX(' + index*-opts.panel_width +'px)');
+            $('.panel').css('transition', '-'+vendor+'-transform '+opts.speed+'s ' +opts.easing);
+            slide = index;
           });
         });
+
+      } else {
+
+    	//browser doesn't support css transforms - use jquery animation fallback
+        $('#navigation ul li').each(function(index) {
+          var li   = $(this);
+          var a    = li.children('a');
+          var hash = a.attr('href');
+
+          a.bind('click', function(e) {
+       	    e.preventDefault();
+            location.hash = hash;
+            li.addClass('current').siblings().removeClass('current');
+            $('#panel_container').stop().animate({
+               marginLeft: index*-opts.panel_width + 'px'
+            },{
+               speed: opts.speed*1000,
+               easing: opts.easing
+            });
+          });
+        });
+
       }
+
+      // Is there a location (not just hashmark)?
+      if(location.hash.length > 1) {
+        // Does it match a tab-target?
+        var trigger = obj.find('a[href^=' + location.hash + ']');
+        if(trigger.length) {
+          trigger.parent().addClass('current');
+          trigger.click();
+        }
+      } else {
+        // No hash, but is a specific tab set current by default?
+        var current = obj.find('#navigation ul li.current'); 
+        if(current.length) {
+          current.children('a').click();
+        } else {
+          // We have no current tab, make the first one current
+          obj.find('#navigation ul li:first-child').addClass('current');
+        }
+      }
+
     });
   }
 
