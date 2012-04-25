@@ -1,7 +1,8 @@
 ﻿jQuery CSS3 Sliding Tabs
 ========================
 
-A jQuery plugin which use CSS3 2D transforms to slides tabbed panel horizontally. If CSS3 transforms aren't available jQuery DOM animation is used as a fallback.
+A jQuery plugin which uses CSS3 2D transforms to slide tabbed panels horizontally. If CSS3 transforms aren't available jQuery DOM animation is used as a fallback.
+**Modified** to support specifying current tab, and named anchors (#hashmarks) lets you share URL directly to a #tab (avoid using existing html id as hash, currently cripples layout).
 
 Basic markup
 ------------
@@ -21,9 +22,9 @@ Basic markup
       
       <div id="navigation">
         <ul>
-          <li>One</li>
-          <li>Two</li>
-          <li>Three</li>
+          <li><a href="#">One</a></li>
+          <li><a href="#comments">Two</a></li>
+          <li class="current"><a href="#">Three</a></li>
         </ul>
       </div>
     </div>
@@ -32,7 +33,7 @@ Basic markup
 Basic Syntax
 ------------
 
-    $('#panel_container').css3tabslider({options});
+    $('#panel_view').css3tabslider({options});
 
 Possible options
 ----------------
